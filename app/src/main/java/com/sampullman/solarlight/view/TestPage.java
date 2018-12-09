@@ -10,8 +10,6 @@ import com.threedbj.viewbuilder.TextViewBuilder;
 import com.threedbj.viewbuilder.ViewBuilder;
 import com.threedbj.viewbuilder.style.Style;
 
-import timber.log.Timber;
-
 import static android.view.Gravity.CENTER;
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
