@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Solar Light</string>
+    <string name="title_activity_connect">ConnectActivity</string>
+
+    <string name="ok_caps">OK</string>
+
+    <string name="popup_title_le_unavailable">BLE Unavailable</string>
+    <string name="popup_message_le_unavailable">Unable to scan - it seems like Bluetooth Low Energy is not available on your phone.</string>
+    <string name="popup_title_location">Location Services Required</string>
+    <string name="popup_message_location">Bluetooth Low Energy requires location services to be enabled.</string>
+    <string name="popup_title_bluetooth_error">Error</string>
+    <string name="popup_message_bluetooth_error">Bluetooth is not supported on your device. Press OK to exit.</string>
+    <string name="title_activity_solar">SolarActivity</string>
+
+    <string name="connect_list_title">Devices</string>
 </resources>
