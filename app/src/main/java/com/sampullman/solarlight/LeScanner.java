@@ -87,8 +87,9 @@ public class LeScanner {
             settings = new ScanSettings.Builder()
                 .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
                 .build();
-            ParcelUuid uuid = new ParcelUuid(SOLAR_UUID);
-            filters.add(new ScanFilter.Builder().setServiceUuid(uuid).build());
+            // TODO -- add back in once UUID is updated
+            // ParcelUuid uuid = new ParcelUuid(SOLAR_UUID);
+            // filters.add(new ScanFilter.Builder().setServiceUuid(uuid).build());
 
         } else if(Build.VERSION.SDK_INT < VERSION_CODES.LOLLIPOP) {
 

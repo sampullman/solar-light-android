@@ -3,11 +3,8 @@ package com.sampullman.solarlight.view.connect;
 import android.widget.BaseAdapter;
 
 import android.bluetooth.BluetoothDevice;
-import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.sampullman.solarlight.R;
@@ -15,37 +12,48 @@ import com.sampullman.solarlight.R;
 import java.util.ArrayList;
 
 public class LeListAdapter extends BaseAdapter {
+    private final ArrayList<BluetoothDevice> deviceList = new ArrayList<>();
+    private OnLeItemClickListener leItemClickListener;
 
-    private final ArrayList<BluetoothDevice> podoList = new ArrayList<>();
+    public interface OnLeItemClickListener {
+        void onLeItemClick(BluetoothDevice device);
+    }
 
     public LeListAdapter() { }
 
-    @Override
-    public Object getItem(int position) {
-        return podoList.get(position);
+    public void setLeItemClickListener(OnLeItemClickListener leItemClickListener) {
+        this.leItemClickListener = leItemClickListener;
     }
 
-    View getView(View convertView, ViewGroup parent, String name) {
-        LinearLayout itemView;
+    @Override
+    public Object getItem(int position) {
+        return deviceList.get(position);
+    }
+
+    View getView(View convertView, ViewGroup parent, BluetoothDevice device) {
         if (convertView == null) {
-            itemView = new LeListItem().build(parent.getContext());
-            parent.addView(itemView);
+            convertView = new LeListItem().build(parent.getContext());
         }
 
         TextView text = convertView.findViewById(R.id.le_connect_list_item);
-        text.setText(name);
+        text.setText(device.getName());
+        convertView.setOnClickListener(v -> {
+            if(leItemClickListener != null) {
+                leItemClickListener.onLeItemClick(device);
+            }
+        });
         return convertView;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         BluetoothDevice device = (BluetoothDevice)getItem(position);
-        return getView(convertView, parent, device.getName());
+        return getView(convertView, parent, device);
     }
 
     @Override
     public int getCount() {
-        return podoList.size();
+        return deviceList.size();
     }
 
     @Override
@@ -54,12 +62,12 @@ public class LeListAdapter extends BaseAdapter {
     }
 
     public void addDevice(BluetoothDevice device) {
-        podoList.add(device);
+        deviceList.add(device);
         notifyDataSetChanged();
     }
 
     public void clear() {
-        podoList.clear();
+        deviceList.clear();
         notifyDataSetChanged();
     }
 }

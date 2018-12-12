@@ -2,6 +2,7 @@ package com.sampullman.solarlight.view.connect;
 
 import android.content.Context;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -31,10 +32,14 @@ public class LeListItem extends LinearLayoutBuilder {
     public LeListItem() {
         horizontal();
         style(Style.WIDE);
+        height(50);
+        backgroundColor(R.color.white);
+        backgroundPressedColor(R.color.light_gray);
     }
 
     public LinearLayout build(Context c) {
         LinearLayout layout = super.build(c, new LinearLayout(c));
+        layout.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
 
         new ViewBuilder()
             .style(ITEM)
@@ -48,7 +53,6 @@ public class LeListItem extends LinearLayoutBuilder {
             .paddingDp(0, 9, 0, 9)
             .id(R.id.le_connect_list_item)
             .build(layout);
-
         return layout;
     }
 

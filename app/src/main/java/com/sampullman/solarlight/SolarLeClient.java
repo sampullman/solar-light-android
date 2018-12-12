@@ -79,8 +79,9 @@ public class SolarLeClient extends LeClient {
 
     public void connectLeDevice(BluetoothDevice device) {
         BluetoothLeService leService = getBleService();
+        Timber.e("Connecting the LE device");
         if(leService == null) {
-            Timber.d("BLE Service not available");
+            Timber.e("BLE Service not available");
         } else {
             SolarLeConnection connection = new SolarLeConnection(leService, device);
             connectLeDelayed(connection);

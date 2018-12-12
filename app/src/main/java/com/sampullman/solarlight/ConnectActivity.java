@@ -33,8 +33,8 @@ public class ConnectActivity extends SolarActivity {
         public LeListAdapter getLeAdapter() {
             return leAdapter;
         }
-        public void onItemClick(Object item) {
-            connectLeDevice((BluetoothDevice)item);
+        public void onItemClick(BluetoothDevice device) {
+            connectLeDevice(device);
         }
     };
 
@@ -148,21 +148,19 @@ public class ConnectActivity extends SolarActivity {
     }
 
     private final LeScannerListener leScannerListener = new LeScannerListener() {
-        private void adapterUpdated(final LeListAdapter adapter, final BluetoothDevice device) {
+
+        @Override
+        public void addDevice(BluetoothDevice device) {
+            Timber.e("Added device %s", device.getName());
             handler.removeCallbacks(locationChecker);
             runOnUiThread(() -> {
-                adapter.addDevice(device);
+                leAdapter.addDevice(device);
                 if(locationDialog != null) {
                     locationDialog.dismiss();
                     locationDialog = null;
                 }
                 updateTitleText();
             });
-        }
-
-        @Override
-        public void addDevice(BluetoothDevice device) {
-            adapterUpdated(leAdapter, device);
         }
 
         @Override
