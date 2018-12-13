@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 import timber.log.Timber;
 
@@ -67,6 +68,14 @@ public class LeScanner {
                 @Override
                 public void onScanResult(int callbackType, final ScanResult result) {
                     //Timber.i("callbackType=%s, result=%s", String.valueOf(callbackType), result.toString());
+                    if("DLG-PRFL".equals(result.getDevice().getName())) {
+                        Timber.d("DIALOG");
+                        List<ParcelUuid> parcelUuids = result.getScanRecord().getServiceUuids();
+                        for(ParcelUuid pUuid : parcelUuids) {
+                            UUID uuid = pUuid.getUuid();
+                            Timber.e("Service: %s", uuid.toString());
+                        }
+                    }
                     addDevice(result.getDevice());
                 }
 

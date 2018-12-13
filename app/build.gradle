@@ -27,7 +27,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.github.sampullman:android-viewbuilder:2df80fde33'
-    implementation 'com.github.sampullman:android-ble:1c551af0e2'
+    implementation 'com.github.sampullman:android-ble:f79b4b3e4e'
 
     implementation 'org.greenrobot:eventbus:3.1.1'
     implementation 'com.jakewharton.timber:timber:4.7.1'

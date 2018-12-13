@@ -187,4 +187,9 @@ public class ConnectActivity extends SolarActivity {
         dialog.show();
     }
 
+    @Override
+    public void servicesDiscovered() {
+        startActivity(new Intent(this, MainActivity.class));
+    }
+
 }

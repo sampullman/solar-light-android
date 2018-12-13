@@ -5,7 +5,10 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public abstract class SolarActivity extends AppCompatActivity {
+import com.sampullman.ble.event.LeEvent;
+import com.sampullman.solarlight.SolarLeClient.SolarLeClientListener;
+
+public abstract class SolarActivity extends AppCompatActivity implements SolarLeClientListener {
     public SolarApplication app;
     public SolarLeClient leClient;
     protected BluetoothAdapter btAdapter;
@@ -18,4 +21,22 @@ public abstract class SolarActivity extends AppCompatActivity {
         leClient = app.getLeClient();
         btAdapter = BluetoothAdapter.getDefaultAdapter();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        leClient.registerListener(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        leClient.unregisterListener(this);
+    }
+
+    @Override
+    public void onEvent(LeEvent event) {}
+
+    @Override
+    public void servicesDiscovered() {}
 }

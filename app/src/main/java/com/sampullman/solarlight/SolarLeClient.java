@@ -20,6 +20,7 @@ public class SolarLeClient extends LeClient {
 
     public interface SolarLeClientListener {
         void onEvent(LeEvent event);
+        void servicesDiscovered();
     }
 
     public SolarLeClient(Context appContext) {
@@ -46,6 +47,9 @@ public class SolarLeClient extends LeClient {
     private final BleListener bleListener = new BleListener() {
 
         public void servicesDiscovered(LeConnection connection) {
+            if(listener != null) {
+                listener.servicesDiscovered();
+            }
         }
 
         public void characteristicRead(LeConnection connection, String uuid, byte[] data) {
