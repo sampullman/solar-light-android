@@ -92,6 +92,10 @@ public class SolarLeClient extends LeClient {
         }
     }
 
+    public SolarLeConnection getLastConnection() {
+        return (SolarLeConnection)super.getLastConnection();
+    }
+
     public boolean isActiveDevice(BluetoothDevice device) {
         SolarLeConnection connection = (SolarLeConnection)getConnectionFromDevice(device);
         return (connection != null) && connection.isActive();
