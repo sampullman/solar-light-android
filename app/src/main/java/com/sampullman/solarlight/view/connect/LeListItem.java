@@ -39,7 +39,8 @@ public class LeListItem extends LinearLayoutBuilder {
 
     public LinearLayout build(Context c) {
         LinearLayout layout = super.build(c, new LinearLayout(c));
-        layout.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
+        layout.setFocusableInTouchMode(false);
+        layout.setFocusable(false);
 
         new ViewBuilder()
             .style(ITEM)

@@ -3,6 +3,7 @@ package com.sampullman.solarlight.view.connect;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -46,11 +47,12 @@ public class ConnectPage {
             .height(80)
             .build(root);
 
-        new ListViewBuilder()
+        ListView list = new ListViewBuilder()
             .adapter(leAdapter)
             .build(new FrameLayoutBuilder()
                 .style(Style.MATCH)
                 .build(root));
+        list.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
 
         return root;
     }

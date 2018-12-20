@@ -151,7 +151,6 @@ public class ConnectActivity extends SolarActivity {
 
         @Override
         public void addDevice(BluetoothDevice device) {
-            Timber.e("Added device %s", device.getName());
             handler.removeCallbacks(locationChecker);
             runOnUiThread(() -> {
                 leAdapter.addDevice(device);

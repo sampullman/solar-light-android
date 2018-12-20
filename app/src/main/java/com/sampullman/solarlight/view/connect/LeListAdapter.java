@@ -11,6 +11,8 @@ import com.sampullman.solarlight.R;
 
 import java.util.ArrayList;
 
+import timber.log.Timber;
+
 public class LeListAdapter extends BaseAdapter {
     private final ArrayList<BluetoothDevice> deviceList = new ArrayList<>();
     private OnLeItemClickListener leItemClickListener;
@@ -30,25 +32,25 @@ public class LeListAdapter extends BaseAdapter {
         return deviceList.get(position);
     }
 
-    View getView(View convertView, ViewGroup parent, BluetoothDevice device) {
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        BluetoothDevice device = (BluetoothDevice)getItem(position);
         if (convertView == null) {
             convertView = new LeListItem().build(parent.getContext());
+            parent.setFocusable(false);
+            convertView.setOnClickListener(v -> {
+                Timber.e("CLICKED!");
+                if(leItemClickListener != null) {
+                    int pos = v.getId();
+                    leItemClickListener.onLeItemClick((BluetoothDevice)getItem(pos));
+                }
+            });
         }
 
         TextView text = convertView.findViewById(R.id.le_connect_list_item);
         text.setText(device.getName());
-        convertView.setOnClickListener(v -> {
-            if(leItemClickListener != null) {
-                leItemClickListener.onLeItemClick(device);
-            }
-        });
+        convertView.setId(position);
         return convertView;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        BluetoothDevice device = (BluetoothDevice)getItem(position);
-        return getView(convertView, parent, device);
     }
 
     @Override

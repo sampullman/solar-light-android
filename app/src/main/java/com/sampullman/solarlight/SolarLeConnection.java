@@ -1,11 +1,16 @@
 package com.sampullman.solarlight;
 
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothGattCharacteristic;
+import android.bluetooth.BluetoothGattServer;
+import android.bluetooth.BluetoothGattService;
 
 import com.sampullman.ble.BluetoothLeService;
 import com.sampullman.ble.LeConnection;
 
 import java.util.UUID;
+
+import timber.log.Timber;
 
 import static com.sampullman.solarlight.GattAttributes.SOLAR_BATTERY_UUID;
 import static com.sampullman.solarlight.GattAttributes.SOLAR_CONTROL_UUID;
@@ -57,6 +62,10 @@ public class SolarLeConnection extends LeConnection {
 
 
     public void requestNotification(UUID uuid, boolean on) {
+        BluetoothGattService s = gatt.getService(SOLAR_UUID);
+        for(BluetoothGattCharacteristic c : s.getCharacteristics()) {
+            Timber.e("GATT %s", c.getUuid());
+        }
         requestNotification(SOLAR_UUID, uuid, on);
     }
 
