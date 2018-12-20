@@ -2,12 +2,14 @@ package com.sampullman.solarlight.view.connect;
 
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.sampullman.solarlight.R;
 import com.threedbj.viewbuilder.FrameLayoutBuilder;
 import com.threedbj.viewbuilder.LinearLayoutBuilder;
 import com.threedbj.viewbuilder.ListViewBuilder;
@@ -44,7 +46,10 @@ public class ConnectPage {
 
         listTitle = new TextViewBuilder()
             .inLinear()
-            .height(80)
+            .height(140)
+            .textSize(20)
+            .gravity(CENTER)
+            .color(R.color.black)
             .build(root);
 
         ListView list = new ListViewBuilder()

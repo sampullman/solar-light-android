@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.sampullman.solarlight.R;
 import com.threedbj.viewbuilder.ButtonBuilder;
 import com.threedbj.viewbuilder.LinearLayoutBuilder;
 import com.threedbj.viewbuilder.TextViewBuilder;
@@ -30,6 +31,7 @@ public class TestPage {
             .inLinear()
             .height(WRAP_CONTENT)
             .gravity(CENTER)
+            .color(R.color.black)
             .paddingDp(0, 10, 0, 10)
             .textSize(22)
             .text("Solar Light Tester")

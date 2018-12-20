@@ -39,7 +39,6 @@ public class LeListAdapter extends BaseAdapter {
             convertView = new LeListItem().build(parent.getContext());
             parent.setFocusable(false);
             convertView.setOnClickListener(v -> {
-                Timber.e("CLICKED!");
                 if(leItemClickListener != null) {
                     int pos = v.getId();
                     leItemClickListener.onLeItemClick((BluetoothDevice)getItem(pos));
@@ -48,7 +47,7 @@ public class LeListAdapter extends BaseAdapter {
         }
 
         TextView text = convertView.findViewById(R.id.le_connect_list_item);
-        text.setText(device.getName());
+        text.setText("%s : %s".format(device.getName(), device.getAddress()));
         convertView.setId(position);
         return convertView;
     }
